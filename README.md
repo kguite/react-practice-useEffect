@@ -1,2 +1,2 @@
-# react-practice-useEffect
+# ReactPractice-ToDoList
 Created with CodeSandbox
