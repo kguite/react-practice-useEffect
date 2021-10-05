@@ -3,9 +3,12 @@ import "./styles.css";
 
 export default function App() {
   const [resourceType, setResourceType] = useState("posts");
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    console.log("render");
+    fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      .then((response) => response.json())
+      .then((json) => setItems(json));
   }, [resourceType]);
 
   return (
@@ -16,6 +19,9 @@ export default function App() {
         <button onClick={() => setResourceType("comments")}>Comments</button>
       </div>
       <h1>{resourceType}</h1>
+      {items.map((item) => {
+        return <pre>{JSON.stringify(item)}</pre>;
+      })}
     </>
   );
 }
